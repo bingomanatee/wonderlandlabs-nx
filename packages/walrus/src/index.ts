@@ -1,2 +1,2 @@
-export * as text from './lib/text';
-export * as type from './lib/type';
+export * as text from './text';
+export * as type from './type';

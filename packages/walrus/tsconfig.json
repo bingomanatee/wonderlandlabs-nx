@@ -10,7 +10,7 @@
     "noFallthroughCasesInSwitch": true
   },
   "files": [],
-  "include": [],
+  "include": ["src"],
   "references": [
     {
       "path": "./tsconfig.lib.json"
@@ -18,5 +18,6 @@
     {
       "path": "./tsconfig.spec.json"
     }
-  ]
+  ],
+  "baseUrl": "."
 }
