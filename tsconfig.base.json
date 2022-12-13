@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@wonderlandlabs/collect": ["packages/collect/src/index.ts"],
+      "@wonderlandlabs/walrus": ["packages/walrus/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

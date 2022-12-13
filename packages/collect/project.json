@@ -1,0 +1,43 @@
+{
+  "name": "collect",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/collect/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/collect",
+        "main": "packages/collect/src/index.ts",
+        "tsConfig": "packages/collect/tsconfig.lib.json",
+        "assets": ["packages/collect/*.md"]
+      }
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node tools/scripts/publish.mjs collect {args.ver} {args.tag}"
+      },
+      "dependsOn": [
+        { "projects": "dependencies", "target": "build" }
+      ]
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/collect/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/collect"],
+      "options": {
+        "jestConfig": "packages/collect/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
