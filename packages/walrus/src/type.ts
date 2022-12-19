@@ -66,8 +66,10 @@ class TypeDef {
     if (typeOf !== this.typeOf) {
       return false;
     }
-    return !(this.test && !this.test(value));
-     // same type as typeof, and no test to fail OR passed test
+    if (this.test && !this.test(value)) {
+      return false;
+    }
+    return true; // same type as typeof, and no test to fail OR passed test
   }
 }
 
@@ -86,7 +88,7 @@ export const types: TypeDef[] = [
   new TypeDef(TypeEnum.object, FormEnum.object, TypeofEnum.object, (o) => o && (typeof o === 'object')),
 ]
 
-export const describe = (value: any, reflect: boolean | string = false): TypeDef | TypeEnum | string => {
+export const describe = (value: any, reflect = false): TypeDef | TypeEnum => {
   if (reflect) {
     const t = describe(value);
     if (typeof t === 'object') {
@@ -94,7 +96,6 @@ export const describe = (value: any, reflect: boolean | string = false): TypeDef
         return t.type;
       }
       if (typeof reflect === 'string') {
-        // @ts-ignore
         return t[reflect]
       }
     }

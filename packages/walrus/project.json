@@ -4,28 +4,6 @@
   "sourceRoot": "packages/walrus/src",
   "projectType": "library",
   "targets": {
-    "build": {
-      "executor": "@nrwl/js:tsc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/packages/walrus",
-        "main": "packages/walrus/src/index.ts",
-        "tsConfig": "packages/walrus/tsconfig.lib.json",
-        "assets": ["packages/walrus/*.md"]
-      }
-    },
-    "publish": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "node tools/scripts/publish.mjs walrus {args.ver} {args.tag}"
-      },
-      "dependsOn": [
-        {
-          "projects": "self",
-          "target": "build"
-        }
-      ]
-    },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
@@ -35,10 +13,21 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/walrus"],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "packages/walrus/jest.config.ts",
         "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/walrus",
+        "tsConfig": "packages/walrus/tsconfig.lib.json",
+        "packageJson": "packages/walrus/package.json",
+        "main": "packages/walrus/src/index.ts",
+        "assets": ["packages/walrus/*.md"]
       }
     }
   },

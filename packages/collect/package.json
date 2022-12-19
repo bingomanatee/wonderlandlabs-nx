@@ -1,13 +1,8 @@
 {
   "name": "@wonderlandlabs/collect",
   "version": "0.0.1",
-  "type": "commonjs",
+  "format": ["esm", "cjs"],
   "dependencies": {
-    "lodash.clonedeep": "^4.5.0",
-    "lodash.tostring": "^4.1.4"
-  },
-  "devDependencies": {
-    "@types/lodash.clonedeep": "^4.5.7",
-    "@types/lodash.tostring": "^4.1.7"
+    "@wonderlandlabs/walrus": "latest"
   }
 }

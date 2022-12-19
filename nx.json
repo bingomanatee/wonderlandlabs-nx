@@ -37,7 +37,6 @@
     "sharedGlobals": []
   },
   "workspaceLayout": {
-    "appsDir": "packages",
     "libsDir": "packages"
   }
 }
